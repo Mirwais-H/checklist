@@ -122,26 +122,6 @@ function saveTaskToLocalStorage(task, dueDateTime, selectedClass) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Get tasks from localStorage
-function getTasksFromLocalStorage() {
-    const tasks = localStorage.getItem('tasks');
-    return tasks ? JSON.parse(tasks) : [];
-}
-
-// Load tasks from localStorage and display them on the UI
-function loadTasksFromLocalStorage() {
-    const tasks = getTasksFromLocalStorage();
-    tasks.forEach(taskObj => {
-        addTask(taskObj.task, taskObj.dueDateTime, taskObj.selectedClass);
-        if (taskObj.completed) {
-            const taskItems = document.querySelectorAll('li');
-            const taskItem = Array.from(taskItems).find(item => item.firstChild.textContent === taskObj.task);
-            if (taskItem) {
-                taskItem.classList.add('completed');
-            }
-        }
-    });
-}
 
 // Remove task from localStorage
 function removeTaskFromLocalStorage(task) {
